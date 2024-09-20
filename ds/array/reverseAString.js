@@ -1,9 +1,14 @@
 function reverse(str) {
-    let ans = '';
-    let splitStr = str.split('');
+    // check input
+    if (!str || str.length < 2 || typeof str !== 'string') {
+        return 'need a valid string'
+    }
 
-    for (let i = splitStr.length - 1; i >= 0; i--) {
-        ans += splitStr[i]
+    let ans = '';
+
+    const totalItems = str.length - 1;
+    for (let i = totalItems; i >= 0; i--) {
+        ans += str[i]
     }
 
     return ans;
