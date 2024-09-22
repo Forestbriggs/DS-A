@@ -22,4 +22,4 @@ describe('mergeSortedArrays works', () => {
         expect(mergeSortedArrays([1, 1, 3, 4], [1, 2, 3, 4])).toEqual([1, 1, 1, 2, 3, 3, 4, 4])
     })
 
-})
+});
