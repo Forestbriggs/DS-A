@@ -29,14 +29,43 @@ class SinglyLinkedList {
     }
 
     insert(index, value) {
+        if (index > this.length) {
+            throw new Error('index out of range');
+        }
+
         if (index === 0) {
             this.prepend(value);
             return this.printList();
         }
+
+        // * grabs index before insertion
+        const prev = this.traverseToIndex(index - 1);
+        // * grabs index to come after insertion
+        const after = prev.next;
+        const newNode = new Node(value);
+        // * sticks newNode at goal index, between the prev and after nodes
+        prev.next = newNode;
+        newNode.next = after;
+        this.length++;
+        return this;
+    }
+
+    traverseToIndex(index) {
+        if (index > this.length) {
+            throw new Error('index out of range');
+        }
+
+        let currNode = this.head;
+
+        for (let i = 0; i < index; i++) {
+            currNode = currNode.next;
+        };
+
+        return currNode;
     }
 
     lookup(value) {
-        return this.head;
+
     }
 
     delete(value) {
@@ -53,10 +82,6 @@ class SinglyLinkedList {
         return array;
     }
 }
-
-const newNode = new Node();
-
-// const list = new SinglyLinkedList(10)
 
 module.exports = {
     SinglyLinkedList,
