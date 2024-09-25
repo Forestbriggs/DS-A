@@ -29,7 +29,7 @@ class SinglyLinkedList {
     }
 
     insert(index, value) {
-        if (index > this.length) {
+        if (index > this.length || index < 0) {
             throw new Error('index out of range');
         }
 
@@ -51,7 +51,7 @@ class SinglyLinkedList {
     }
 
     traverseToIndex(index) {
-        if (index > this.length) {
+        if (index > this.length || index < 0) {
             throw new Error('index out of range');
         }
 
@@ -68,8 +68,24 @@ class SinglyLinkedList {
 
     }
 
-    delete(value) {
+    remove(index) {
+        if (index >= this.length || index < 0) {
+            throw new Error('index out of range');
+        }
 
+        if (index === 0) {
+            const nodeToDelete = this.head;
+            const newHead = nodeToDelete.next;
+            this.head = newHead;
+            return this;
+        }
+
+        // * grab index before removal
+        const prev = this.traverseToIndex(index - 1);
+        const nodeToDelete = prev.next;
+        const newNext = nodeToDelete.next;
+        prev.next = newNext;
+        return this;
     }
 
     printList() {

@@ -61,5 +61,44 @@ describe('Singly Linked list works', () => {
 
     test('insert catches out of range index', () => {
         expect(() => newList.insert(1000, 90)).toThrow();
+        expect(() => newList.insert(-1000, 90)).toThrow();
+    });
+
+    test('remove catches out of range indexes', () => {
+        expect(() => newList.remove(-1000)).toThrow('index out of range');
+        expect(() => newList.remove(1000)).toThrow('index out of range');
+    })
+
+    test('remove works normally', () => {
+        newList.append(20);
+        newList.append(30);
+        newList.append(40);
+        expect(newList.printList()).toEqual([10, 20, 30, 40]);
+        newList.remove(2);
+        expect(newList.printList()).toEqual([10, 20, 40]);
+    });
+
+    test('remove works with 0 index', () => {
+        newList.append(20);
+        newList.append(30);
+        expect(newList.printList()).toEqual([10, 20, 30]);
+        newList.remove(0);
+        expect(newList.printList()).toEqual([20, 30]);
+    });
+
+
+    describe('traverseToIndex works', () => {
+
+        test('catches out of range index', () => {
+            expect(() => newList.traverseToIndex(-1000)).toThrow();
+            expect(() => newList.traverseToIndex(1000)).toThrow();
+        });
+
+        test('grabs correct node', () => {
+            newList.append(20);
+            newList.append(30);
+            expect(newList.printList()).toEqual([10, 20, 30]);
+            expect(newList.traverseToIndex(2).value).toEqual(30);
+        })
     })
 })
