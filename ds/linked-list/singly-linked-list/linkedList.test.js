@@ -75,6 +75,7 @@ describe('Singly Linked list works', () => {
         newList.append(40);
         expect(newList.printList()).toEqual([10, 20, 30, 40]);
         newList.remove(2);
+        expect(newList.length).toEqual(3);
         expect(newList.printList()).toEqual([10, 20, 40]);
     });
 
@@ -83,6 +84,7 @@ describe('Singly Linked list works', () => {
         newList.append(30);
         expect(newList.printList()).toEqual([10, 20, 30]);
         newList.remove(0);
+        expect(newList.length).toEqual(2)
         expect(newList.printList()).toEqual([20, 30]);
     });
 

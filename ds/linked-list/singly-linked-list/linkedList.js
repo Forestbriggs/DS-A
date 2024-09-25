@@ -1,3 +1,4 @@
+
 class Node {
     constructor(value) {
         this.value = value;
@@ -77,14 +78,15 @@ class SinglyLinkedList {
             const nodeToDelete = this.head;
             const newHead = nodeToDelete.next;
             this.head = newHead;
+            this.length--
             return this;
         }
 
         // * grab index before removal
         const prev = this.traverseToIndex(index - 1);
         const nodeToDelete = prev.next;
-        const newNext = nodeToDelete.next;
-        prev.next = newNext;
+        prev.next = nodeToDelete.next;
+        this.length--
         return this;
     }
 
