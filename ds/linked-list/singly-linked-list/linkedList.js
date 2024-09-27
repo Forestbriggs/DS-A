@@ -1,4 +1,3 @@
-
 class Node {
     constructor(value) {
         this.value = value;
@@ -98,6 +97,25 @@ class SinglyLinkedList {
             currNode = currNode.next;
         }
         return array;
+    }
+
+    reverse() {
+        if (this.length === 1) {
+            return this;
+        }
+
+        let i = 1;
+        while (i < this.length) {
+            const oldHead = this.head;
+            const leader = this.traverseToIndex(i - 1);
+            const newHead = leader.next;
+            leader.next = newHead.next;
+            this.head = newHead;
+            newHead.next = oldHead;
+            i++
+        }
+
+        return this;
     }
 }
 

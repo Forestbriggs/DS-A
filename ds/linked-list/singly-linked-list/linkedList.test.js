@@ -102,5 +102,21 @@ describe('Singly Linked list works', () => {
             expect(newList.printList()).toEqual([10, 20, 30]);
             expect(newList.traverseToIndex(2).value).toEqual(30);
         })
-    })
+    });
+
+    describe('reverse works', () => {
+        test('works with single element list', () => {
+            expect(newList.reverse().printList()).toEqual([10]);
+        });
+
+        test('works with multiple element list', () => {
+            newList.append(20);
+            newList.append(30);
+            newList.append(40);
+            newList.reverse();
+            console.log(newList.tail);
+            expect(newList.printList()).toEqual([40, 30, 20, 10]);
+        });
+
+    });
 })

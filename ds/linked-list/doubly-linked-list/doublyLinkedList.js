@@ -35,12 +35,24 @@ class DoublyLinkedList {
     }
 
     insert(index, value) {
+        if (index === 0) {
+            return this.prepend(value);
+        }
+
         if (index > this.length || index < 0) {
             throw new Error('index out of range');
         }
 
+        const newNode = new DoubleNode(value);
         // * grab index before insertion
         const leader = this.traverseToIndex(index - 1);
+        const follower = leader.next;
+        leader.next = newNode;
+        newNode.prev = leader;
+        newNode.next = follower;
+        follower.prev = newNode;
+        this.length++;
+        return this;
     }
 
     remove(index) {
@@ -48,12 +60,26 @@ class DoublyLinkedList {
             throw new Error('index out of range');
         }
 
+        if (index === 0) {
+            const toBeDeleted = this.head;
+            const newHead = toBeDeleted.next;
+            this.head = newHead;
+            newHead.prev = null;
+            this.length--;
+            return this;
+        }
+
         // * grab index before removal
         const leader = this.traverseToIndex(index - 1);
+        const toBeDeleted = leader.next;
+        const follower = toBeDeleted.next;
+        leader.next = follower;
+        follower.prev = leader;
+        this.length--;
+        return this;
     }
 
     lookup(value) {
-
     }
 
     traverseToIndex(index) {
