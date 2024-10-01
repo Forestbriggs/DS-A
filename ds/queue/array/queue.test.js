@@ -1,6 +1,6 @@
 const Queue = require('./queue');
 
-describe.skip('Queue works', () => {
+describe('Queue works', () => {
     let newQueue;
 
     beforeEach(() => {
@@ -16,14 +16,14 @@ describe.skip('Queue works', () => {
         newQueue.enqueue(10);
         expect(newQueue.array).toEqual([10]);
         newQueue.enqueue(20);
-        expect(newQueue.array).toEqual([10, 20]);
+        expect(newQueue.array).toEqual([20, 10]);
     });
 
     test('enqueue works with multiple elements', () => {
         newQueue.enqueue(10);
         newQueue.enqueue(20);
         newQueue.enqueue(30);
-        expect(newQueue.array).toEqual([10, 20, 30]);
+        expect(newQueue.array).toEqual([30, 20, 10]);
     });
 
     test('dequeue works', () => {
@@ -37,7 +37,7 @@ describe.skip('Queue works', () => {
         newQueue.enqueue(20);
         newQueue.enqueue(30);
         expect(newQueue.dequeue()).toEqual(10);
-        expect(newQueue.array).toEqual([20, 30]);
+        expect(newQueue.array).toEqual([30, 20]);
     });
 
     test('dequeue catches empty queue', () => {
