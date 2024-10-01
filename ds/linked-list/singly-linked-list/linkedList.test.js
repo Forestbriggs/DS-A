@@ -114,7 +114,6 @@ describe('Singly Linked list works', () => {
             newList.append(30);
             newList.append(40);
             newList.reverse();
-            console.log(newList.tail);
             expect(newList.printList()).toEqual([40, 30, 20, 10]);
         });
 

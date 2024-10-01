@@ -18,12 +18,14 @@ class Stack {
     }
 }
 
-const stack = new Stack();
-stack.push('google');
-stack.push('udemy')
-stack.push('discord')
-console.log(stack)
-stack.pop();
-stack.pop()
-console.log(stack.pop())
-console.log(stack)
+// const stack = new Stack();
+// stack.push('google');
+// stack.push('udemy')
+// stack.push('discord')
+// console.log(stack)
+// stack.pop();
+// stack.pop()
+// console.log(stack.pop())
+// console.log(stack)
+
+module.exports = Stack;

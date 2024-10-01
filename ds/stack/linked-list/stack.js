@@ -13,7 +13,7 @@ class Stack {
     }
 
     peek() {
-        return this.top;
+        return this.top.value;
     }
 
     push(value) {
@@ -46,11 +46,16 @@ class Stack {
     }
 };
 
-const stack = new Stack();
-stack.push('google');
-stack.push('udemy')
-stack.push('discord')
-stack.pop();
-stack.pop()
-console.log(stack.pop())
-console.log(stack)
+// const stack = new Stack();
+// stack.push('google');
+// stack.push('udemy')
+// stack.push('discord')
+// stack.pop();
+// stack.pop()
+// console.log(stack.pop())
+// console.log(stack)
+
+module.exports = {
+    Node,
+    Stack
+}
