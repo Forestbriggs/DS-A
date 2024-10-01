@@ -1,3 +1,4 @@
+// Never do this, super inefficient
 class Queue {
     constructor() {
         this.array = [];
