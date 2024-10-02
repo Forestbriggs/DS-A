@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Node struct {
 	value int
@@ -31,12 +34,90 @@ func (l LinkedList) append(value int) LinkedList {
 	return l
 }
 
-// figure out nested formatting for nodes
+func (l LinkedList) prepend(value int) LinkedList {
+	newNode := Node{value, nil}
+	newNode.next = l.head
+	l.head = &newNode
+	l.length++
+	return l
+}
+
+func (l LinkedList) insert(index, value int) LinkedList {
+	if index > l.length || index < 0 {
+		log.Fatalln("index out of range")
+	}
+
+	if index == 0 {
+		l = l.prepend(value)
+		return l
+	}
+
+	prev := l.traverseToIndex(index - 1)
+	after := prev.next
+	newNode := Node{value, nil}
+	prev.next = &newNode
+	newNode.next = after
+	l.length++
+	return l
+}
+
+func (l LinkedList) traverseToIndex(index int) *Node {
+	if index > l.length || index < 0 {
+		log.Fatalln("index out of range")
+	}
+
+	currNode := l.head
+
+	for i := 0; i < index; i++ {
+		currNode = currNode.next
+	}
+
+	return currNode
+}
+
+func (l LinkedList) reverse() LinkedList {
+	if l.length == 1 {
+		return l
+	}
+
+	i := 1
+
+	for i < l.length {
+		oldHead := l.head
+		leader := l.traverseToIndex(i - 1)
+		newHead := leader.next
+		leader.next = newHead.next
+		l.head = newHead
+		newHead.next = oldHead
+		i++
+	}
+
+	return l
+}
+
+func (l LinkedList) printList() {
+	arr := []int{}
+	currNode := l.head
+	for currNode != nil {
+		arr = append(arr, currNode.value)
+		currNode = currNode.next
+	}
+	fmt.Printf("%v\n", arr)
+}
+
 func main() {
 	l := New()
-	fmt.Println(l)
+	l.printList()
 	l = l.append(10)
-	fmt.Printf("head %v, tail %v, length %v\n", l.head, l.tail, l.length)
+	l.printList()
 	l = l.append(20)
-	fmt.Printf("head %v, tail %v, length %v\n", l.head, l.tail, l.length)
+	l.printList()
+	l = l.prepend(99)
+	l.printList()
+	l = l.insert(0, 1000)
+	l.printList()
+	l = l.insert(3, 900)
+	l.printList()
+	l = l.reverse()
+	l.printList()
 }
