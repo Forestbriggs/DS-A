@@ -42,7 +42,7 @@ class BinarySearchTree {
 
     lookup(value) {
         if (!this.root) {
-            return undefined;
+            return false;
         }
 
         let currNode = this.root;
@@ -56,7 +56,7 @@ class BinarySearchTree {
             }
         }
 
-        return undefined;
+        return false;
     }
 
     remove(value) {

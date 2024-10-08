@@ -59,7 +59,7 @@ describe('BinarySearchTree works', () => {
     });
 
     test('lookup works with empty tree', () => {
-        expect(newTree.lookup(60)).toEqual(undefined);
+        expect(newTree.lookup(60)).toEqual(false);
     });
 
     test('lookup works with multiple children', () => {
@@ -73,6 +73,6 @@ describe('BinarySearchTree works', () => {
         expect(newTree.lookup(30)).toEqual(true);
         expect(newTree.lookup(2)).toEqual(true);
         expect(newTree.lookup(50)).toEqual(true);
-        expect(newTree.lookup(60)).toEqual(undefined);
+        expect(newTree.lookup(60)).toEqual(false);
     });
 });
