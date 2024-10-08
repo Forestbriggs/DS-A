@@ -75,4 +75,17 @@ describe('BinarySearchTree works', () => {
         expect(newTree.lookup(50)).toEqual(true);
         expect(newTree.lookup(60)).toEqual(false);
     });
+
+    test('remove works with empty tree', () => {
+        expect(newTree.remove(60)).toEqual(undefined);
+    });
+
+    test('remove works with one child', () => {
+        newTree.insert(10);
+        newTree.insert(5);
+        newTree.remove(5);
+        expect(newTree.root.value).toEqual(10);
+        expect(newTree.root.left).toEqual(null);
+        expect(newTree.root.right).toEqual(null);
+    });
 });
